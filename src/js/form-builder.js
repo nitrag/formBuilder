@@ -1270,7 +1270,7 @@
 
     // update preview to label
     $sortableFields.on('keyup change', '[name="label"]', function() {
-      $('.field-label', $(this).closest('li')).text($(this).val());
+      $('.field-label', $(this).closest('li')).html(this.value);
     });
 
     // remove error styling when users tries to correct mistake
