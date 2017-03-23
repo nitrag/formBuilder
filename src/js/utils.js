@@ -324,7 +324,7 @@ fbUtils.fieldRender = function(fieldData, opts, preview = false) {
     var fieldMarkup = '',
       fieldLabel = '',
       optionsMarkup = '',
-      fieldLabelText = utils.parsedHtml(fieldData.label) || '',
+      fieldLabelText = fbUtils.parsedHtml(fieldData.label) || '',
       fieldDesc = fieldData.description || '',
       fieldRequired = '',
       fieldOptions = fieldData.values;
@@ -458,7 +458,7 @@ fbUtils.fieldRender = function(fieldData, opts, preview = false) {
         fieldMarkup = `<${fieldData.type} ${fieldDataString}>${fieldVal}</${fieldData.type}>`;
         break;
       default:
-        fieldMarkup = `<button ${fieldDataString}>${fieldLabelText}</button>`;
+        fieldMarkup = `<${fieldData.type} ${fieldDataString}>${fieldLabelText}</${fieldData.type}>`;
     }
 
     if (fieldData.type !== 'hidden') {
