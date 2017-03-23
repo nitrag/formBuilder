@@ -82,7 +82,7 @@ fbUtils.safeAttr = function(name, value) {
     if (Array.isArray(value)) {
       valString = fbUtils.escapeAttr(value.join(' '))
     } else {
-      if (typeof(value) === 'boolean') {
+      if (typeof(value) === 'boolean' || typeof(value) === 'number') {
         value = value.toString();
       }
       valString = fbUtils.escapeAttr(value.replace(',', ' ').trim());
@@ -452,6 +452,10 @@ fbUtils.fieldRender = function(fieldData, opts, preview = false) {
             $(document.getElementById(fieldData.id)).kcToggle();
           }, 100);
         }
+        break;
+      case 'p':
+        let fieldVal = fieldLabelText.replace(/\r\n|\n/g, "<br />") || '';
+        fieldMarkup = `<${fieldData.type} ${fieldDataString}>${fieldVal}</${fieldData.type}>`;
         break;
       default:
         fieldMarkup = `<button ${fieldDataString}>${fieldLabelText}</button>`;
