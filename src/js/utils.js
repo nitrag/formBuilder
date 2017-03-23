@@ -249,6 +249,17 @@ fbUtils.parseXML = function(xmlString) {
 };
 
 /**
+ * Converts escaped HTML into usable HTML
+ * @param  {String} html escaped HTML
+ * @return {String}      parsed HTML
+ */
+fbUtils.parsedHtml = function(html) {
+  var escapeElement = document.createElement('textarea');
+  escapeElement.innerHTML = html;
+  return escapeElement.textContent;
+};
+  
+/**
  * Escape markup so it can be displayed rather than rendered
  * @param  {String} html markup
  * @return {String}      escaped html
