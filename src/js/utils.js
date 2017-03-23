@@ -324,7 +324,7 @@ fbUtils.fieldRender = function(fieldData, opts, preview = false) {
     var fieldMarkup = '',
       fieldLabel = '',
       optionsMarkup = '',
-      fieldLabelText = fieldData.label || '',
+      fieldLabelText = utils.parsedHtml(fieldData.label) || '',
       fieldDesc = fieldData.description || '',
       fieldRequired = '',
       fieldOptions = fieldData.values;
@@ -347,8 +347,6 @@ fbUtils.fieldRender = function(fieldData, opts, preview = false) {
       }
       fieldLabel = `<label for="${fieldData.id}" class="fb-${fieldData.type}-label">${fieldLabelText} ${fieldRequired} ${fieldDesc}</label>`;
     }
-
-    var fieldLabelVal = fieldData.label;
 
     delete fieldData.label;
     delete fieldData.description;
@@ -444,7 +442,7 @@ fbUtils.fieldRender = function(fieldData, opts, preview = false) {
         break;
       case 'button':
       case 'submit':
-        fieldMarkup = `<button ${fieldDataString}>${fieldLabelVal}</button>`;
+        fieldMarkup = `<button ${fieldDataString}>${fieldLabelText}</button>`;
         break;
       case 'checkbox':
         fieldMarkup = `<input ${fieldDataString}> ${fieldLabel}`;
@@ -456,7 +454,7 @@ fbUtils.fieldRender = function(fieldData, opts, preview = false) {
         }
         break;
       default:
-        fieldMarkup = `<${fieldData.type} ${fieldDataString}>${fieldLabelVal}</${fieldData.type}>`;
+        fieldMarkup = `<button ${fieldDataString}>${fieldLabelText}</button>`;
     }
 
     if (fieldData.type !== 'hidden') {
